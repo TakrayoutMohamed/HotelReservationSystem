@@ -25,7 +25,7 @@ public class Service {
                 throw new RoomAlreadyExistedException("Error : Room already existed try an other id");
             rooms.add(new Room(roomNumber, roomType, roomPricePerNight));
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -42,15 +42,12 @@ public class Service {
                 throw new NotEnoughBalanceException("Error: you do not have enough balance to book the room with id: "+ room.get().getId()+ " it's price is "+ totalPrice + " and you have "+ user.get().getBalance());
             if (!isRoomAvailable(roomNumber, checkIn, checkOut))
                 throw new RoomUnavailableException("Error: the room with id: "+ room.get().getId() +" you trying to book already booked");
-            System.out.println("get NumberOfDays : "+ getNumberOfDays(checkIn, checkOut));
-            System.out.println("room.get().getPricePerNight() : "+ room.get().getPricePerNight());
-            System.out.println("Total price : "+ totalPrice);
             bookings.add(new Booking(bookings.size() + 1, checkIn, checkOut, new Users(user.get()), new Room(room.get())));
             bookings.getLast().setTotalPrice(totalPrice);
             user.get().setBalance(user.get().getBalance() - totalPrice);
         }
         catch (Exception e){
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -84,7 +81,7 @@ public class Service {
         }
         catch (Exception e)
         {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 
